@@ -7,50 +7,53 @@
         <meta charset="UTF-8">
     </head>
     <body>
-    <h1 class="MyH">ToDoList</h1>
-    <div class="MyInput">
-        <input type="text" placeholder="добавить элемент"/>
-        <button id="createButton">Создать</button>
-        <button id="clearButton">Очистить</button>
-    </div>
-    <ol>
-        <li>
-            <label class="MyLabel">
-                <input type="checkbox">
-                <span class="AllText">
-                    <span class="TaskText"> Почесать cat </span>
-                    <span class="SubTaskText">от 24.08.2024</span>
-                </span>
-            </label>
-            <button class="MyButton">&#10060</button>
-        </li>
-        <li>
-            <label class="MyLabel">
-                <input type="checkbox">
-                <span class="AllText"> 
-                    <span class="TaskText"> Полить potatoes </span>
-                    <span class="SubTaskText">от 04.11.2021</span>
-                </span>
-            </label>
-            <button class="MyButton">&#10060</button>
-        </li>
-        <li>
-            <label class="MyLabel">
-                <input type="checkbox">
-                <span class="AllText"> 
-                    <span class="TaskText"> Сложить в basket </span>
-                    <span class="SubTaskText">от 14.15.2035</span>
-                </span>
-            </label>
-            <button class="MyButton">&#10060</button>
-        </li>
-    </ol>
-    </body>
+        <main>
+            <h1 class="Header">ToDoList</h1>
+            <div class="MyInput">
+                <input type="text" placeholder="добавить элемент"/>
+                <button id="createButton">Создать</button>
+                <button id="clearButton">Очистить</button>
+            </div>
+            <ol>
+                <li>
+                    <label class="MyLabel">
+                        <input type="checkbox">
+                        <span class="AllText">
+                            <span class="TaskText">Почесать cat</span>
+                            <span class="SubTaskText">от 24.08.2024</span>
+                        </span>
+                    </label>
+                    <button class="LiButton">✖</button>
+                </li>
+                <li>
+                    <label class="MyLabel">
+                        <input type="checkbox">
+                        <span class="AllText"> 
+                            <span class="TaskText">Полить potatoes</span>
+                            <span class="SubTaskText">от 04.11.2021</span>
+                        </span>
+                    </label>
+                    <button class="LiButton">✖</button>
+                </li>
+                <li>
+                    <label class="MyLabel">
+                        <input type="checkbox">
+                        <span class="AllText"> 
+                            <span class="TaskText"> Сложить в basket </span>
+                            <span class="SubTaskText">от 14.15.2035</span>
+                        </span>
+                    </label>
+                    <button class="LiButton">✖</button>
+                </li>
+            </ol>
+        </main>
 
-    
-    <footer class="site-footer">
-        <hr class="footer-line">
-        <!-- This creates the horizontal line -->
-        <p>&copy; 2026 WebSite. All Copyrights Claimed.</p>
-    </footer>
+        
+        <footer class="site-footer">
+            <hr>
+            <!-- This creates the horizontal line -->
+            <p>&copy; 2026 WebSite. All Copyrights Claimed.</p>
+        </footer>
+
+    </body>
 </html>

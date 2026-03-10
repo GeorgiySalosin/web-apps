@@ -2,9 +2,19 @@ body {
     background-color: rgb(60, 82, 75);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
+    min-height: 100vh
 }
 
-.MyH {
+main
+{
+    flex: 1;
+}
+
+html, body{
+    height: 100%
+}
+
+.Header {
     color: white;
     text-align: center;
 }
@@ -18,18 +28,16 @@ body {
 }
 
 .MyInput input {
-    width: 70%;
     border: 0;
     font-family: inherit;
     font-size: inherit;
-    flex: 1 1 250px; /* to resize  */
+    flex: 0 0 252px; /* to resize  */
 }
 
 .MyInput button {
     min-width: 90px;
-    width: 20%;
+    flex: 0 0 128px;
     border: 0;
-
     font-family: inherit;
     font-size: inherit;
 }
@@ -38,8 +46,16 @@ body {
     background-color: rgb(184, 175, 175);
 }
 
+#createButton:hover{
+    background-color: rgb(200, 195, 195);
+}
+
 #clearButton {
     background-color: rgb(224, 35, 35);
+}
+
+#clearButton:hover {
+    background-color: rgb(235, 50, 50);
 }
 
 ol {
@@ -61,17 +77,19 @@ ol li {
 
 ol li:hover{
     background-color: lightgray;
+    color: darkslategrey
 }
 
 ol li:has(input:checked){
     background-color: gray;
+    color: white
 }
+
 
 .MyLabel {
     display: flex;
     flex-direction: row;
 }
-
 
 .MyLabel:has(input:checked) .TaskText{
     text-decoration: line-through;
@@ -83,20 +101,21 @@ ol li:has(input:checked){
     margin: 0px 0px 0px 10px;
 }
 
-
 .SubTaskText {
-    text-decoration: none;
     font-size: 0.7em;
-    color: rgb(80, 80, 80);
 }
-
 
 .site-footer {
     text-align: center;
     color: white;
+    flex-shrink: 0;
+    
 }
 
-.MyButton {
+
+.LiButton {
+    font-size: 1em;
     border: 0px;
     background-color: inherit;
+    color: inherit;
 }
