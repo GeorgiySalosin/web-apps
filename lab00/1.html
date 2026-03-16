@@ -8,13 +8,40 @@
     </head>
     <body>
         <main>
-            <h1 class="Header">ToDoList</h1>
+            <div class="Header">
+                <div class="Header-icon"></div>
+                <div class="Header-text">
+                    <h1>ToDoList</h1>
+                </div>
+            </div>
             <div class="MyInput">
                 <input type="text" placeholder="добавить элемент"/>
                 <button id="createButton">Создать</button>
                 <button id="clearButton">Очистить</button>
             </div>
-            <ol>
+
+            <!--  NO  PROBELLAS!!!  -->
+
+            <ol data-placeholder="Не найдено ни одного дела"><li>
+                    <label class="MyLabel">
+                        <input type="checkbox">
+                        <span class="AllText">
+                            <span class="TaskText">Почесать cat</span>
+                            <span class="SubTaskText">от 24.08.2024</span>
+                        </span>
+                    </label>
+                    <button class="LiButton">✖</button>
+                </li>
+                <li>
+                    <label class="MyLabel">
+                        <input type="checkbox">
+                        <span class="AllText">
+                            <span class="TaskText">Почвыыкеыкноыкновыновновенвенвеновеновенвat</span>
+                            <span class="SubTaskText">от 24.08.2024</span>
+                        </span>
+                    </label>
+                    <button class="LiButton">✖</button>
+                </li>
                 <li>
                     <label class="MyLabel">
                         <input type="checkbox">
@@ -44,8 +71,8 @@
                         </span>
                     </label>
                     <button class="LiButton">✖</button>
-                </li>
-            </ol>
+                </li></ol>
+            
         </main>
 
         
