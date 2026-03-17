@@ -1,40 +1,69 @@
 body {
-    background-color: rgb(60, 82, 75);
+    /* background-color: rgb(60, 82, 75); */
+    background-image: url(tgvan.jpg);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
-    min-height: 100vh
+    margin: 0;
+    display: flex;  /*to allow blocks spread over all the space*/
+    flex-direction: column;
 }
 
 main
 {
-    flex: 1;
+    flex: 1 1 auto;              /* может расти и сжиматься */
+    display: flex;           
+    flex-direction: column;  
+    min-height: 0;   
+
 }
 
 html, body{
-    height: 100%
+    height: 100%;       /* sets for both height = available*/
 }
 
 .Header {
     color: white;
     text-align: center;
+    flex-shrink: 0;               /* restrict shrink */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
+
+.Header-icon {
+    width: 50px;
+    height: 50px;
+    background-image: url(DefaultUser.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.Header-text {
+    flex-shrink: 0;
+}
+
+
 
 .MyInput{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    /*to make btns newline*/
     justify-content: center;
     width: 70%;
     margin: 0px auto;
 }
 
-.MyInput input {
+.MyInput input { /*textbox field*/
     border: 0;
     font-family: inherit;
     font-size: inherit;
-    flex: 0 0 252px; /* to resize  */
+    flex: 0 0 252px; 
 }
 
-.MyInput button {
+ .MyInput button {   /*buttons of textbox */
     min-width: 90px;
     flex: 0 0 128px;
     border: 0;
@@ -55,17 +84,61 @@ html, body{
 }
 
 #clearButton:hover {
-    background-color: rgb(235, 50, 50);
+    background-color: rgb(250, 90, 90);
 }
+
+
+
+
 
 ol {
-    list-style-type: none;
     width: 50%;
-    margin: 40px auto;
-
+    margin: 0 auto; 
     font-family: inherit;
     font-size: inherit;
+    overflow-y: auto;
+    
+    /* Stretch to all availb sp */
+    flex: 1 1 auto;
+    min-height: 0;
+    
+    padding: 0; /* to align li center */
+    position: relative;
+    list-style-type: none;
+    
+    /* Для пустого списка - центрируем содержимое */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+/* Стили для непустого списка */
+ol:not(:empty) {
+    display: block;
+    margin: 40px auto; /* Возвращаем отступы когда есть элементы */
+    flex: 0 1 auto; /* Сбрасываем растягивание */
+}
+
+ol:empty {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ol:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+    font-style: italic;
+    font-size: 32px;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+
+
+
 
 ol li {
     background-color: white;
@@ -73,22 +146,37 @@ ol li {
     justify-content: space-between;
     align-items: center;
     padding: 8px;
+    min-width: 0;  /* to allow text shrink */
 }
 
-ol li:hover{
+ol li:hover {
     background-color: lightgray;
-    color: darkslategrey
+    color: rgb(71, 94, 94);
 }
 
-ol li:has(input:checked){
+ol li:has(input:checked) {
     background-color: gray;
-    color: white
+    color: white;
 }
+
+
+
+
 
 
 .MyLabel {
     display: flex;
     flex-direction: row;
+    min-width: 0;         /* to allow text shrink */
+   
+}
+
+.AllText {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;         /* For text clipping */
+    flex: 1;              
+    margin-right: 10px;   /* mrg from 'remove' button */
 }
 
 .MyLabel:has(input:checked) .TaskText{
@@ -96,26 +184,48 @@ ol li:has(input:checked){
 }
 
 .TaskText {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 0px 10px;
+    display: block;       /* flex -> block */
+    margin-left: 12px;
+    
+    /* TXT clip */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
 .SubTaskText {
     font-size: 0.7em;
+    color: rgb(184, 184, 184);
+    white-space: nowrap;  
+    margin-left: 12px;  
+    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+.site-footer {
+    text-align: center;
+    color: white;
+    flex-shrink: 1;
+    min-height: none;
 }
 
 .site-footer {
     text-align: center;
     color: white;
-    flex-shrink: 0;
-    
+    margin: 5px 0;
 }
-
-
 .LiButton {
     font-size: 1em;
     border: 0px;
     background-color: inherit;
     color: inherit;
+    cursor: pointer;
 }
