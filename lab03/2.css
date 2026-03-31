@@ -1,0 +1,24 @@
+.myHeader {
+    color: white;
+    text-align: center;
+    flex-shrink: 0;               /* restrict shrink */
+    background-image: url(Header.jpg);
+    background-size: cover;
+    align-items: center;
+    line-height: 0.8;
+}
+.myHeaderText2 {
+    color: white;
+    font-style: normal;
+    font-size: 12px;
+}
+.myButton
+{
+    width: 92px;
+    height: 28px;
+    background-color: rgb(255, 103, 86);
+    color: white;
+    font-size: 10px;
+    border: 0cap;
+    border-radius: 16px;
+}
