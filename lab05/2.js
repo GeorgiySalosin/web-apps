@@ -15,7 +15,7 @@ alert(firstUniqueChar(a));
 
  alert("task 2.2");
 function generateRandomString(length) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklnopqrstuvwxyz0123456789';
     let result = '';
     for (let i = 0; i < length; i++) {
         let randomIndex = Math.floor(Math.random() * chars.length);
