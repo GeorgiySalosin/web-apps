@@ -127,5 +127,62 @@ function stopCounter() {
 }
 
 
+// TASK 2
 
+
+//1
+
+function delay(seconds) {
+    return new Promise(resolve => {
+        setTimeout(resolve, seconds * 1000);        // settimeout вызовется через seconds
+    });
+}
+
+async function runDelayCounter() {
+    const n = parseInt(document.getElementById('delayCounterN').value);
+    const outputDiv = document.getElementById('delayCounterOutputContent');
+    
+    outputDiv.innerHTML = `Запуск<br>`;
+    
+    for (let i = n; i >= 0; i--) {
+        outputDiv.innerHTML += `${i}<br>`;
+        await delay(1);
+    }
+    
+    outputDiv.innerHTML += `✅<br>`;
+}
+
+//2
+
+async function getFirstRepo() {
+    const username = document.getElementById('githubUsername').value;
+    const outputDiv = document.getElementById('githubOutputContent');
+    
+    
+    try {
+        const userRes = await fetch(`https://api.github.com/users/${username}`);
+        
+        if (!userRes.ok) {
+            outputDiv.innerHTML += `${username} не найден<br>`;
+            return;
+        }
+        
+        const user = await userRes.json();
+        outputDiv.innerHTML += `Найден: ${user.name || user.login}<br>`;
+        
+        const reposRes = await fetch(user.repos_url);
+        const repos = await reposRes.json();
+        
+        if (repos.length === 0) {
+            outputDiv.innerHTML += `Нет репозиториев<br>`;
+            return;
+        }
+        
+        outputDiv.innerHTML += `Первый репозиторий: <strong>${repos[0].name}</strong><br>`;
+        outputDiv.innerHTML += `Звёзд: ${repos[0].stargazers_count || 0}<br>`;
+        
+    } catch (error) {
+        outputDiv.innerHTML += `Ошибка: ${error.message}<br>`;
+    }
+}
 

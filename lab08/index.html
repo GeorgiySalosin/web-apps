@@ -177,28 +177,29 @@
                 <input type="number" id="counterN" value="5" min="0">
                 <button onclick="runCounter()">▶ Запустить counter()</button>
             </div>
-            <div id="counterOutput" class="output">
+            <div id="counterOutput1" class="output">
                 <h4>Вывод counter():</h4>
-                <div class="output-content" id="counterOutputContent"></div>
+                <div class="output-content" id="counterOutputContent1"></div>
             </div>
 
             <hr>
 
-        <h3>Объект createCounter(n)</h3>
-        <div class="input-group">
-            <label>Введите число N:</label>
-            <input type="number" id="counterValue" value="10" min="0">
-            <button onclick="createAndStart()">🚀 Создать и запустить счётчик</button>
-        </div>
-        <div class="btn-group">
-            <button onclick="pauseCounter()" class="btn-pause" id="pauseBtn" disabled>⏸ Пауза</button>
-            <button onclick="resumeCounter()" class="btn-pause" id="resumeBtn" disabled>▶ Возобновить</button>
-            <button onclick="stopCounter()" class="btn-stop" id="stopBtn" disabled>⏹ Стоп</button>
-        </div>
-        <div id="counterOutput" class="output">
-            <h4>Вывод:</h4>
-            <div class="output-content" id="counterOutputContent"></div>
-            <div id="counterStatus" class="status"></div>
+            <h3>Объект createCounter(n)</h3>
+            <div class="input-group">
+                <label>Введите число N:</label>
+                <input type="number" id="counterValue" value="10" min="0">
+                <button onclick="createAndStart()">▶ Создать и запустить</button>
+            </div>
+            <div class="btn-group">
+                <button onclick="pauseCounter()" class="btn-pause" id="pauseBtn" disabled>⏸ Пауза</button>
+                <button onclick="resumeCounter()" class="btn-pause" id="resumeBtn" disabled>▶ Возобновить</button>
+                <button onclick="stopCounter()" class="btn-stop" id="stopBtn" disabled>⏹ Стоп</button>
+            </div>
+            <div id="counterOutput2" class="output">
+                <h4>Вывод createCounter():</h4>
+                <div class="output-content" id="counterOutputContent2"></div>
+                <div id="counterStatus" class="status"></div>
+            </div>
         </div>
 
         <!-- Задача 2: Промисы -->
