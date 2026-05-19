@@ -27,53 +27,105 @@ function runCounter() {
 
 
 //2
-let timer = null;
-let num = 0;
-let maxNum = 0;
+let counterTimer = null;
+let currentNum = 0;
+let startNum = 0;
 
 function createAndStart() {
-    if (timer) clearInterval(timer);
+    if (counterTimer) {
+        clearInterval(counterTimer);
+        counterTimer = null;
+    }
     
-    maxNum = parseInt(document.getElementById('createCounterN').value);
-    num = maxNum;
+    startNum = parseInt(document.getElementById('counterValue').value);
+    currentNum = startNum;
     
-    document.getElementById('createCounterOutputContent').innerHTML = `Счёт от ${maxNum} до 0:<br>`;
+    if (isNaN(startNum) || startNum < 0) {
+        alert('Введите корректное число');
+        return;
+    }
     
-    timer = setInterval(() => {
-        if (num >= 0) {
-            document.getElementById('createCounterOutputContent').innerHTML += `${num}<br>`;
-            if (num === 0) clearInterval(timer);
-            num--;
+    const outputDiv = document.getElementById('counterOutputContent2');
+    outputDiv.innerHTML = '';
+    outputDiv.innerHTML += `Счёт от ${startNum} до 0:<br>`;
+    
+    document.getElementById('pauseBtn').disabled = false;
+    document.getElementById('resumeBtn').disabled = true;
+    document.getElementById('stopBtn').disabled = false;
+    document.getElementById('counterStatus').innerHTML = 'Запуск:';
+    
+    counterTimer = setInterval(() => {
+        if (currentNum >= 0) {
+            const outputDiv = document.getElementById('counterOutputContent2');
+            outputDiv.innerHTML += `${currentNum}<br>`;
+            
+            if (currentNum === 0) {
+                clearInterval(counterTimer);
+                counterTimer = null;
+                document.getElementById('counterStatus').innerHTML = '✅';
+                document.getElementById('pauseBtn').disabled = true;
+                document.getElementById('resumeBtn').disabled = true;
+                document.getElementById('stopBtn').disabled = true;
+            }
+            
+            currentNum--;
         }
     }, 1000);
 }
 
 function pauseCounter() {
-    if (timer) {
-        clearInterval(timer);
-        timer = null;
+    if (counterTimer) {
+        clearInterval(counterTimer);
+        counterTimer = null;
+        document.getElementById('counterStatus').innerHTML = `пауза (${currentNum + 1})`;
+        document.getElementById('pauseBtn').disabled = true;
+        document.getElementById('resumeBtn').disabled = false;
     }
 }
 
 function resumeCounter() {
-    if (!timer && num >= 0) {
-        timer = setInterval(() => {
-            if (num >= 0) {
-                document.getElementById('createCounterOutputContent').innerHTML += `${num}<br>`;
-                if (num === 0) clearInterval(timer);
-                num--;
+    if (!counterTimer && currentNum >= 0) {
+        counterTimer = setInterval(() => {
+            if (currentNum >= 0) {
+                const outputDiv = document.getElementById('counterOutputContent2');
+                outputDiv.innerHTML += `${currentNum}<br>`;
+                
+                if (currentNum === 0) {
+                    clearInterval(counterTimer);
+                    counterTimer = null;
+                    document.getElementById('counterStatus').innerHTML = '✅';
+                    document.getElementById('pauseBtn').disabled = true;
+                    document.getElementById('resumeBtn').disabled = true;
+                    document.getElementById('stopBtn').disabled = true;
+                }
+                
+                currentNum--;
             }
         }, 1000);
+        
+        document.getElementById('counterStatus').innerHTML = 'запущен';
+        document.getElementById('pauseBtn').disabled = false;
+        document.getElementById('resumeBtn').disabled = true;
     }
 }
 
 function stopCounter() {
-    if (timer) {
-        clearInterval(timer);
-        timer = null;
+    if (counterTimer) {
+        clearInterval(counterTimer);
+        counterTimer = null;
     }
-    num = maxNum;
-    document.getElementById('createCounterOutputContent').innerHTML = `Сброшено до ${maxNum}<br>`;
+    
+    currentNum = startNum;
+    
+    const outputDiv = document.getElementById('counterOutputContent2');
+    outputDiv.innerHTML = `Счёт сброшен до ${startNum}<br>`;
+    
+    document.getElementById('counterStatus').innerHTML = 'убит';
+    document.getElementById('pauseBtn').disabled = true;
+    document.getElementById('resumeBtn').disabled = true;
+    document.getElementById('stopBtn').disabled = true;
 }
+
+
 
 
