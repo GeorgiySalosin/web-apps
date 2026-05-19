@@ -186,3 +186,116 @@ async function getFirstRepo() {
     }
 }
 
+
+
+// TASK 3
+
+class HttpError extends Error {
+  constructor(response) {
+    super(`${response.status} for ${response.url}`);
+    this.name = 'HttpError';
+    this.response = response;
+  }
+}
+
+async function loadJson(url) {
+  const response = await fetch(url);
+  
+  if (response.status == 200) {
+    return await response.json();
+  } else {
+    throw new HttpError(response);
+  }
+}
+
+
+
+// 
+async function searchGithubUser() {
+  const loginInput = document.getElementById('githubLogin');
+  const outputDiv = document.getElementById('asyncOutputContent');
+  const login = loginInput.value.trim();
+  
+  if (!login) {
+    outputDiv.innerHTML = '<span style="color: red;">введите логин</span>';
+    return;
+  }
+  
+  // Показываем индикатор загрузки
+  outputDiv.innerHTML = '<span style="color: blue;">Загрузка</span>';
+  
+  try {
+    const user = await loadJson(`https://api.github.com/users/${login}`);
+    
+    // Отображаем информацию о пользователе
+    outputDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="${user.avatar_url}" width="60" height="60" style="border-radius: 50%;">
+        <div>
+          <strong>Пользователь найден!</strong><br>
+          <strong>Логин:</strong> ${user.login}<br>
+          <strong>Полное имя:</strong> ${user.name || 'не указано'}<br>
+          <strong>Репозитории:</strong> ${user.public_repos}<br>
+          <strong>Подписчики:</strong> ${user.followers}<br>
+          <a href="${user.html_url}" target="_blank">Профиль на GitHub</a>
+        </div>
+      </div>
+    `;
+    
+  } catch (err) {
+    if (err instanceof HttpError && err.response.status == 404) {
+      outputDiv.innerHTML = `
+        <span style="color: red;">Пользователь "${login}" не найден на GitHub!</span><br>
+        <small>Пожалуйста, проверьте логин и попробуйте снова.</small>
+      `;
+    } else {
+      console.error(err);
+      outputDiv.innerHTML = `
+        <span style="color: red;">Ошибка при загрузке данных: ${err.message}</span>
+      `;
+    }
+  }
+}
+
+// Функция для демонстрации работы с циклом (аналог getGithubUser с prompt)
+async function demoGithubUserWithLoop() {
+  const outputDiv = document.getElementById('asyncOutputContent');
+  
+  while (true) {
+    let name = prompt("Введите логин пользователя GitHub:", "octocat");
+    
+    if (!name) {
+      outputDiv.innerHTML = '<span style="color: orange;">⏸️ Поиск отменён</span>';
+      return null;
+    }
+    
+    outputDiv.innerHTML = `<span style="color: blue;">Поиск пользователя "${name}"...</span>`;
+    
+    try {
+      const user = await loadJson(`https://api.github.com/users/${name}`);
+      
+      outputDiv.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="${user.avatar_url}" width="60" height="60" style="border-radius: 50%;">
+          <div>
+            <strong>Успех!</strong><br>
+            <strong>Полное имя:</strong> ${user.name || 'не указано'}<br>
+            <strong>Логин:</strong> ${user.login}
+          </div>
+        </div>
+      `;
+      alert(`Полное имя: ${user.name || 'не указано'}`);
+      return user;
+      
+    } catch (err) {
+      if (err instanceof HttpError && err.response.status == 404) {
+        alert(`Пользователь "${name}" не существует, пожалуйста, повторите ввод.`);
+        // Продолжаем цикл - запрашиваем логин снова
+        continue;
+      } else {
+        outputDiv.innerHTML = `<span style="color: red;">Ошибка: ${err.message}</span>`;
+        throw err;
+      }
+    }
+  }
+}
