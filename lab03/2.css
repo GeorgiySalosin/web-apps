@@ -165,7 +165,7 @@ div > h2 {
 }
 
 .avatar {
-    background-image: url("../resources/Avatar.jpg");
+    background-image: url("Avatar.jpg");
     height: 40px;
     width: 40px;
     flex-shrink: 0;
@@ -433,13 +433,23 @@ div > h2 {
 #map-container {
     width: 100%;
     max-width: 500px;
-    height: auto;
+    height: 450px !important;
+    min-height: 450px;
+    background: #e9e9e9;
+    border-radius: 10px;
 }
 
 #map-container svg {
     width: 100%;
     height: auto;
     display: block;
+}
+
+
+
+/* Полностью скрыть правый нижний блок, если нужно убрать и текст */
+.leaflet-bottom.leaflet-right {
+    display: none;
 }
 
 /* ---------- ФУТЕР ---------- */
@@ -459,3 +469,4 @@ footer > .logo > .travel {
 footer > :last-child {
     margin-bottom: 0px;
 }
+
