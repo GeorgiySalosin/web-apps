@@ -1,73 +1,272 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Сттрана</title>
     <link rel="stylesheet" type="text/css" href="2.css">
+    <script defer src="carousel.js"></script>
+    <script defer src="svg.js"></script>
+    <title>TravelWorld</title>
     <meta charset="UTF-8">
 </head>
-
 <body>
-<main> 
-
-    <div class="myHeader">
+    <div class="flex-row" id="navigation-bar">
+        <span class="logo">
+            <span class="travel">Travel</span><!--
+                --><span class="world">World</span>
+        </span>
+        <div>
+            <a href="#about">О нас</a>
+            <a href="#directions">Направления</a>
+            <a href="#tours">Туры</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+    </div>
+    <div class="image-bg-container" id="welcome">
+        <img src="Spain.jpg">
         <h1>Откройте мир с TravelWorld</h1>
-        <p class="myHeaderText2">Путешествия, которые вы никогда не забудете</p>
-        <button class="myButton">Выбрать тур</button>
-        
+        <p>Путешествия, которые вы никогда не забудете</p>
+        <button>Выбрать тур</button>
     </div>
-    
-    
-    <div id="about" style="padding: 0px 64px;">
-        <h2 class="commonHeader">О нашем агентстве</h2>
-        <div class="aboutULayout">
-            
-            <div class="aboutVLayout">
-                <h4 class="commonHeaderSmall">Мы создаем незабываемые впечатления</h4>
-                <p class="commonText">TravelWorld - это команда профессиональных путешественников,
-                    которая уже более 15 лет помогает людям открывать для себя новые
-                    страны и культуры. Мы тщательно отбираем каждый тур и
-                    направление, чтобы обеспечить вам максимальный комфорт и
-                    безопасность во время путешествия. <br><br>
-                    Наша философия - индивидуальный подход к каждому клиенту. Мы
-                    не просто продаем туры, мы создаем уникальные маршруты, которые
-                    соответствуют вашим интересам, бюджету и предпочтениям. 
-                </p>
-                <button class="myButton">Связаться с нами</button>
+    <div id="about">
+        <h2>О нашем агентстве</h2>
+        <div class="flex-row">
+            <div>
+                <h3>Мы создаём незабываемые впечатления</h3>
+                <p>TravelWorld - это команда профессиональных путешественников, которая уже более 15 лет помогает людям открывать для себя новые страны
+                и культуры. Мы тщательно отбираем каждый тур и направление, чтобы обеспечить вам максимальный комфорт и безопасность во время 
+                путешествия.</p>
+                <p>Наша философия - индивидуальный подход к каждому клиенту. Мы не просто продаем туры, мы создаем уникальные маршруты, которые соответствуют вашим 
+                интересам, бюджету и предпочтениям.</p>
+                <button>Связаться с нами</button>
             </div>
-            <div class="myImage"><img src="about_us.jpg"></div>
+            <div class="image-bg-container">
+                <img src="Kolmar.jpg">
+            </div>
         </div>
     </div>
-
-
-
-    <div style="padding: 0px 64px;">
-        <h2 class="commonHeader">Наши лучшие предложения</h2>
-
-        <div class="theBestULayout" >
-            <h3>
-                <h1 class="specialHeader">Travel</h1>
-            </h3>
-            <a class="myLink" href="#about">О нас</a>
-            <a class="myLink" href="#weather">Направления</a>
-            <a class="myLink" href="#stats">Туры</a>
-            <a class="myLink" href="#form">Отзывы</a>
-            <a class="myLink" href="#faq">FAQ</a>
-            <a class="myLink" href="#contacts">Контакты</a>
+    <div id="special-offer">
+        <h2>Наши лучшие предложения</h2>
+        <div class="slider">
+            <div class="slides">
+                <div class="image-bg-container slide">
+                    <img src="Edinburg.jpg">
+                    <div>
+                        <h3>Эдинбург, Шотландия</h3>
+                        <p>Столица Шотландии не оставит равнодушными любителей средневековья</p>
+                    </div>
+                </div>
+                <div class="image-bg-container slide">
+                    <img src="Reykjavik.jpg">
+                    <div>
+                        <h3>Рейкьявик, Исландия</h3>
+                        <p>Страна льда и пламени — горячие источники, водопады и северное сияние</p>
+                    </div>
+                </div>
+                <div class="image-bg-container slide">
+                    <img src="Krakow.jpg">
+                    <div>
+                        <h3>Краков, Польша</h3>
+                        <p>Древняя столица с уютными улочками, замком Вавель и площадью Рыночной</p>
+                    </div>
+                </div>
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
         </div>
     </div>
-
-
-
-
-</main>
-
-<footer class="myFooter">
-
-            <!-- <hr> -->
-            <h3 class="myFooterHeader">World</h3>
-
-            <p class="myFooterText">&copy; 2026 TravelWorld. Все права защищены.</p>
-</footer>
+    <div id="directions">
+        <h2>Популярные направления</h2>
+        <div class="flex-row">
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="Budapesht.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Будапешт, Венгрия</h3>
+                    <p>Будапешт - это мосты, дворцы и термальные купальни, многие из которых расположились в фантастически красивых зданиях (взять хотя бы Геллерт или Сечени).</p>
+                    <h4>от $1200</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="Paris.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Париж, Франция</h3>
+                    <p>Город любви, искусства и изысканной кухни. Эйфелева башня, Лувр и уютные кафе.</p>
+                    <h4>от $950</h4>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="New York.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Нью-Йорк, США</h3>
+                    <p>Город, который никогда не спит. Таймс-сквер, Центральный парк и Статуя Свободы.</p>
+                    <h4>от $1500</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tours">
+        <h2>Наши туры</h2>
+        <div class="flex-row">
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="Europe.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Гранд тур по Европе</h3>
+                    <p>14-дневный тур по 5 странам: Франция, Германия, Австрия, Италия и Швейцария. Включены все переезды, проживание в отелях 4* и экскурсии с профессиональными гидами.</p>
+                    <div class="flex-row tour-footer">
+                        <h4>$2500</h4>
+                        <button>Забронировать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="Rio.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Рио-де-Жанейро, Бразилия</h3>
+                    <p>Скалистые горы, зелёные холмы и живописные лагуны создают захватывающие панорамы, которые хочется запомнить и фотографировать.</p>
+                    <div class="flex-row tour-footer">
+                        <h4>$3200</h4>
+                        <button>Забронировать</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-bg-container card-image">
+                    <img src="Japan.jpg">
+                </div>
+                <div class="scroll-text">
+                    <h3>Япония: традиции и современность</h3>
+                    <p>12-дневный тур по Токио, Киото, Осака и Хиросима. Чайные церемонии, самурайские замки, суши-мастер-классы и высокоскоростные поезда.</p>
+                    <div class="flex-row tour-footer">
+                        <h4>$2800</h4>
+                        <button>Забронировать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="reviews">
+        <h2>Отзывы наших клиентов</h2>
+        <div class="flex-row">
+            <div class="card review">
+                <div class="flex-row">
+                    <div class="avatar"></div>
+                    <div>
+                        <h4>Мария Иванова</h4>
+                        <span>Тур по Италии, май 2025</span>
+                    </div>
+                </div>
+                <p class="scroll-text">"Это было самое потрясающее путешествие в моей жизни! Все было организовано на высшем уровне - трансферы, экскурсии, отели. Особенно понравился гид в Риме, который показал нам город с неожиданной стороны."</p>
+            </div> 
+            <div class="card review">
+                <div class="flex-row">
+                    <div class="avatar"></div>
+                    <div>
+                        <h4>Алексей Петров</h4>
+                        <span>Отдых на Мальдивах, январь 2025</span>
+                    </div>
+                </div>
+                <p class="scroll-text">"Спасибо TravelWorld за идеально организованный отдых. Все прошло без единой проблемы, от встречи в аэропорту до обратного вылета. Отель превзошел все ожидания, а дайвинг был просто незабываемым!"</p>
+            </div>
+            <div class="card review">
+                <div class="flex-row">
+                    <div class="avatar"></div>
+                    <div>
+                        <h4>Елена Смирнова</h4>
+                        <span>Экскурсионный тур по Японии, апрель 2025</span>
+                    </div>
+                </div>
+                <p class="scroll-text">"Я давно мечтала о поездке в Японию, и TravelWorld сделали эту мечту реальностью. Программа была насыщенной, но без спешки. Особенно запомнилось цветение сакуры в Киото. Обязательно обращусь снова!"</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>Наши моменты</h2>
+        <div class="flex-row" id="gallery">
+            <div class="image-bg-container moments">
+                <img src="Budapesht.jpg">
+            </div>
+            <div class="image-bg-container moments">
+                <img src="Reykjavik.jpg">
+            </div>
+            <div class="image-bg-container moments">
+                <img src="Rio.jpg">
+            </div>
+            <div class="image-bg-container moments">
+                <img src="Edinburg.jpg">
+            </div>
+            <div class="image-bg-container moments">
+                <img src="Europe.jpg">
+            </div>
+            <div class="image-bg-container moments">
+                <img src="Japan.jpg">
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2>Часто задаваемые вопросы</h2>
+        <div id="faq">
+            <div class="flex-row">
+                <h3>Как забронировать тур?</h3>
+                <h3>+</h3>
+            </div>
+            <div class="flex-row">
+                <h3>Какие документы нужны для путешествия?</h3>
+                <h3>+</h3>
+            </div>
+            <div class="flex-row">
+                <h3>Есть ли у вас страховка?</h3>
+                <h3>+</h3>
+            </div>
+            <div class="flex-row">
+                <h3>Можно ли изменить дату поездки после бронирования?</h3>
+                <h3>+</h3>
+            </div>
+            <div class="flex-row">
+                <h3>Что делать, если тур отменяется?</h3>
+                <h3>+</h3>
+            </div>
+        </div>
+    </div>
+    <div id="contacts">
+        <h2>Наши контакты</h2>
+        <div class="flex-row">
+            <div>
+                <h3>Свяжитесь с нами</h3>
+                <div id="contact-details">
+                    <p>г. Москва, ул. Тверская, д. 10, офис 45</p>
+                    <p>+7 (495) 123-45-67</p>
+                    <p>info@travelworld.ru</p>
+                    <p>
+                        Пн-Пт: 10:00 - 20:00<br>
+                        Сб-Вс: 11:00 - 18:00
+                    </p>
+                </div>
+                <div class="flex-row">
+                    <button class="active-button">Европа</button>
+                    <button>Азия</button>
+                    <button>Америка</button>
+                    <button>Африка</button>
+                </div>
+            </div>
+            <div id="map-container"></div>
+        </div>
+    </div>
+    <footer>
+        <span class="logo">
+            <span class="travel">Travel</span><!--
+            --><span class="world">World</span>
+        </span>
+        <p>&copy; 2025 TravelWorld. Все права защищены.</p>
+    </footer>
 </body>
-
 </html>
+ 
