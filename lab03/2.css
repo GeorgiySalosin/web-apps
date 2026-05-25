@@ -1,165 +1,461 @@
-html, body
-{
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
     height: 100%;
+}
+
+/* ---------- VARIABLES ---------- */
+:root {
+    --background-color-1: rgb(230, 230, 230);
+    --background-color-2: rgb(245, 245, 245);
+
+    --color-1: rgb(37, 37, 37);
+    --color-2: rgb(255, 108, 108);
+    --color-3 : gray;
+    --color-4: white;
+
+    --shadow-color-1: rgb(214, 214, 214);
+    --box-shadow-1: 0px 3px 5px var(--shadow-color-1);
+
+    --padding-x: 90px;
+    --padding-y: 55px;
+
+    --font-size: clamp(14px, 2vw, 20px);
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: var(--font-size);
 }
 
-body
-{
-    display: flex;  /*to allow blocks spread over all the space*/
-    flex-direction: column;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--color-1);
 }
 
-main
-{
-    flex: 1 1 auto; 
-    display: flex;           
-    flex-direction: column;  
-    min-height: 0;   
-
+p {
+    color: var(--color-3);
+    font-size: calc(var(--font-size) - 2px);
+    line-height: 1.4;
 }
 
-.myHeader {
-    aspect-ratio: 4/1;
-    color: white;
-    background-image: url(Header.jpg);
-    background-size: cover;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    line-height: 0.1em;
-}
-.myHeaderText2 {
-    color: white;
-    font-style: normal;
-    font-size: 12px;
-    padding: 8px;
-}
-
-
-
-
-
-.aboutULayout
-{
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: top;
-    gap: 32px;
-}
-
-.aboutVLayout
-{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: flex-start;        /* button now does not stretch */
-}
-
-.theBestULayout
-{
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
-}
-
-
-.commonHeader
-{
-    padding-top: 32px;
-    text-align: center;
-    color:rgb(46, 46, 46);
-    
-}
-.commonHeaderSmall
-{
-    text-align: left;
-    color:rgb(78, 78, 78);
-    margin: 0px;
-}
-.commonText
-{
-    color:rgb(104, 104, 104);
-    font-size: 12px;
-    word-spacing: 3px;
-}
-
-.myImage
-{
-    flex: 1;
-    padding-top: 0px;
-}
-
-.myImage img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  display: block;
-  border-radius: 4px;
-}
-
-.myButton
-{
-    width: auto;
-    padding: 0px 16px;
-    height: 28px;
-    background-color: rgb(241, 103, 103);
-    color: white;
-    font-size: 10px;
-    border: 0cap;
-    border-radius: 16px;
-    
-}
-
-.myButton:hover
-{
-    background-color: rgb(255, 127, 127);
-    cursor: not-allowed;
-}
-
-
-.myFooter
-{
-    background-color: rgb(56, 54, 54);
-    color: rgb(241, 103, 103);
-    font-size: 14px;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 1;
-    min-height: none;
-}
-.myFooterText
-{
-    color: rgb(156, 156, 156);
-    font-size: 10px;
-    padding-bottom: 16px;
-}
-
-.specialHeader
-{
-    color: rgb(48, 48, 48);
-    font-size: 14px;
-    position: relative;
-    padding-right: 256px;
-}
-.specialHeader::after
-{
-    content: "World";
-    color: rgb(241, 103, 103);
-    position: absolute;
-    left: calc(5ch);
-    
-}
-
-.myLink
-{
+a {
+    color: inherit;
     text-decoration: none;
-    color: rgb(39, 39, 39);
-    font-size: 12px;
+}
+
+button {
+    background-color: var(--color-2);
+    border: 0px;
+    color: var(--color-4);
+    border-radius: 20px;
+    padding: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    
+}
+
+/* ---------- ОБЩИЕ БЛОКИ (СЕКЦИИ) ---------- */
+body > div {
+    background-color: var(--background-color-1);
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+    padding-top: var(--padding-y);
+    padding-bottom: var(--padding-y);
+}
+
+body > div:nth-child(odd) {
+    background-color: var(--background-color-2);
+}
+
+div > h2 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ---------- УТИЛИТЫ ---------- */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.image-bg-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.image-bg-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+
+.image-bg-container img:hover {
+    transform: scale(1.05);
+}
+
+.image-bg-container > *:not(img) {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- КОМПОНЕНТЫ ---------- */
+.scroll-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.scroll-text > p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: clamp(13px, calc(var(--font-size) - 2px), 18px);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: var(--color-4);
+    box-shadow: var(--box-shadow-1);
+    min-width: 150px;
+    height: 370px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.card + .card {
+    margin-left: 23px;
+}
+
+.card-image + .scroll-text {   
+    padding: 15px;
+}
+
+.card-image {
+    height: 40%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.avatar {
+    background-image: url("../resources/Avatar.jpg");
+    height: 40px;
+    width: 40px;
+    flex-shrink: 0;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 50%;
+}
+
+.avatar + div {
+    margin-left: 23px;
+}
+
+.avatar + div > span {
+    color: var(--color-3);
+}
+
+/* ---------- ЛОГОТИП ---------- */
+.logo > * {
     font-weight: bold;
-    padding: 0px 8px;
+}
+
+.logo > .travel {
+    color: var(--color-1);
+}
+
+.logo > .world {
+    color: var(--color-2);
+}
+
+/* ---------- НАВИГАЦИЯ ---------- */
+#navigation-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: var(--color-4);
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+    box-shadow: var(--box-shadow-1);
+    white-space: nowrap;
+
+    z-index: 100;
+}
+
+#navigation-bar > .logo {
+    margin-right: 20px;
+}
+
+#navigation-bar + div {
+    padding-top: 44px;
+}
+
+#navigation-bar > div > a {
+    margin-right: 13px;
+}
+
+#about, #directions, #tours, #reviews, #contacts {
+    scroll-margin-top: 44px; /* высота вашей фиксированной панели (примерно) */
+}
+
+/* ---------- WELCOME ---------- */
+#welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 550px;
+    height: 300px;
+    padding: 0px;
+    border-radius: 0px;
+}
+
+#welcome img {
+    filter: brightness(0.4);
+}
+
+#welcome > p,
+#welcome > h1 {
+    color: var(--color-4);
+}
+
+/* ---------- ABOUT ---------- */
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#about > .flex-row > div {
+    flex: 1;
+}
+
+#about > .flex-row > div + div {
+    margin-left: 25px;
+}
+
+#about img {
+    filter: brightness(0.9);
+}
+
+/* ---------- SPECIAL OFFER ---------- */
+#special-offer {
+    padding-left: calc(var(--padding-x) + 80px);
+    padding-right: calc(var(--padding-x) + 80px);
+    padding-bottom: 2px;
+}
+
+.slider {
+    overflow: hidden;
+    position: relative;
+    min-width: 200px;
+    border-radius: 10px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Контент поверх фона */
+.slide > div {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.slide > div > * {
+    color: var(--color-4);
+}
+
+.slide > div :last-child {
+    margin-bottom: 0px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* ---------- НАПРАВЛЕНИЯ И ТУРЫ (общие карточки) ---------- */
+.tour-footer {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;   /* прижимает к низу карточки */
+}
+
+.tour-footer > h4 {
+    color: var(--color-2);
+    margin-right: 15px;
+}
+
+/* ---------- ОТЗЫВЫ ---------- */
+.review {
+    padding: 20px;
+    min-width: 205px;
+    min-height: 240px;
+    height: auto;
+    background-color: var(--background-color-1);
+}
+
+.review > .flex-row {
+    align-items: center;
+}
+
+.review > p {
+    font-style: italic;
+    margin-bottom: 0px;
+}
+
+/* ---------- ГАЛЕРЕЯ МОМЕНТОВ ---------- */
+#gallery {
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#gallery > .moments {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+}
+
+/* ---------- FAQ ---------- */
+#faq {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+#faq > .flex-row {
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color-1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-1);
+}
+
+#faq > .flex-row > h3 + h3 {
+    margin-left: 15px;
+}
+
+/* ---------- КОНТАКТЫ ---------- */
+#contacts > .flex-row {
+    justify-content: space-between;
+}
+
+#contacts > .flex-row > div + div {
+    margin-left: 15px;
+}
+
+#contact-details {
+    margin-left: 15px;
+}
+
+#contact-details + .flex-row {
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#contacts button {
+    background-color: var(--background-color-2);
+    color: var(--color-1);
+    transition: all 0.2s ease;
+}
+
+#contacts button.active-button {
+    background-color: var(--color-2);
+    color: var(--color-4);
+}
+
+#map-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+#map-container svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- ФУТЕР ---------- */
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-1);
+    padding: 20px;
+}
+
+footer > .logo > .travel {
+    color: var(--color-4);
+}
+
+footer > :last-child {
+    margin-bottom: 0px;
 }
