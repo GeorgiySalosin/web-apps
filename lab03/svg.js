@@ -29,7 +29,7 @@ function addMarker(lat, lon, name, source) {
 
 // get crds thru API , show marker
 function showContinent(continentKey, apiQuery) {
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(apiQuery)}&format=json&limit=1`;
+    const url = `https://nominatim.openstreetmap.org/search?q=${apiQuery}&format=json&limit=1`;
     fetch(url, { headers: { 'User-Agent': 'TravelWorld-App/1.0' } })
         .then(response => {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
