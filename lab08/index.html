@@ -231,15 +231,20 @@
             </div>
         </div>
 
-        <!-- Задача 3: Async/Await -->
-        <div class="task">
-            <h2>📌 Задача 3: Async/Await</h2>
-            <h3>Поиск пользователя GitHub (с циклом)</h3>
-            <button onclick="runGithubUserSearch()">Найти пользователя GitHub</button>
-            <div id="asyncOutput" class="output">
-                <h4>Результат:</h4>
-                <div class="output-content" id="asyncOutputContent"></div>
-            </div>
+    <!-- Задача 3: Async/Await -->
+    <div class="task">
+        <h2>📌 Задача 3: Async/Await</h2>
+        <h3>Поиск пользователя GitHub</h3>
+        
+        <div class="input-group">
+            <label>Логин GitHub:</label>
+            <input type="text" id="githubLogin" value="octocat" style="flex:1;">
+            <button onclick="searchGithubUser()">🔍 Найти пользователя</button>
+        </div>
+        
+        <div id="asyncOutput" class="output">
+            <h4>Результат:</h4>
+            <div class="output-content" id="asyncOutputContent"></div>
         </div>
     </div>
 

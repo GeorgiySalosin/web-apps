@@ -1,13 +1,13 @@
 let map;
-let currentMarker = null; // текущий маркер
+let currentMarker = null;
 let activeButtonIndex = 1;
 
-// Координаты центров континентов
-const continents = {
-    europe:  { lat: 50.0, lon: 10.0,  btnIndex: 1, name: 'Европа' },
-    asia:    { lat: 40.0, lon: 100.0, btnIndex: 2, name: 'Азия' },
-    america: { lat: 20.0, lon: -95.0, btnIndex: 3, name: 'Америка' },
-    africa:  { lat: 5.0,  lon: 20.0,  btnIndex: 4, name: 'Африка' }
+// Fallback
+const fallbackCoords = {
+    europe:  { lat: 50.0, lon: 10.0,  name: 'Европа', btnIndex: 1 },
+    asia:    { lat: 40.0, lon: 100.0, name: 'Азия',   btnIndex: 2 },
+    america: { lat: 20.0, lon: -95.0, name: 'Америка', btnIndex: 3 },
+    africa:  { lat: 5.0,  lon: 20.0,  name: 'Африка',  btnIndex: 4 }
 };
 
 function setActiveButton(idx) {
@@ -19,20 +19,33 @@ function setActiveButton(idx) {
     activeButtonIndex = idx;
 }
 
-function addMarker(lat, lon, name) {
+function addMarker(lat, lon, name, source) {
     if (currentMarker) map.removeLayer(currentMarker);
     currentMarker = L.marker([lat, lon]).addTo(map)
-        .bindPopup(`<b>${name}</b><br>Центр континента`)
+        .bindPopup(`<b>${name}</b><br>Координаты: ${source}`)
         .openPopup();
     map.setView([lat, lon], 3);
 }
 
-function showContinent(key) {
-    const c = continents[key];
-    if (c) {
-        addMarker(c.lat, c.lon, c.name);
-        setActiveButton(c.btnIndex);
-    }
+// get crds thru API , show marker
+function showContinent(continentKey, apiQuery) {
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(apiQuery)}&format=json&limit=1`;
+    fetch(url, { headers: { 'User-Agent': 'TravelWorld-App/1.0' } })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            if (data && data[0] && data[0].lat && data[0].lon) {
+                const lat = parseFloat(data[0].lat);
+                const lon = parseFloat(data[0].lon);
+                addMarker(lat, lon, fallbackCoords[continentKey].name, 'OpenStreetMap API');
+            } else {
+                const fb = fallbackCoords[continentKey];
+                addMarker(fb.lat, fb.lon, fb.name, 'Fallback');
+            }
+            setActiveButton(fallbackCoords[continentKey].btnIndex); // подсветка после успеха
+        });
 }
 
 function initMap() {
@@ -44,22 +57,21 @@ function initMap() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
     
-    // Принудительное обновление размеров
-    setTimeout(() => map.invalidateSize(), 100);
     
-    // Кнопки
-    const btn1 = document.querySelector('#contacts button:nth-of-type(1)');
-    const btn2 = document.querySelector('#contacts button:nth-of-type(2)');
-    const btn3 = document.querySelector('#contacts button:nth-of-type(3)');
-    const btn4 = document.querySelector('#contacts button:nth-of-type(4)');
     
-    if (btn1) btn1.addEventListener('click', () => showContinent('europe'));
-    if (btn2) btn2.addEventListener('click', () => showContinent('asia'));
-    if (btn3) btn3.addEventListener('click', () => showContinent('america'));
-    if (btn4) btn4.addEventListener('click', () => showContinent('africa'));
+    // assign buttons to corresponding methods
+    const btnEurope = document.querySelector('#contacts button:nth-of-type(1)');
+    const btnAsia   = document.querySelector('#contacts button:nth-of-type(2)');
+    const btnAmerica= document.querySelector('#contacts button:nth-of-type(3)');
+    const btnAfrica = document.querySelector('#contacts button:nth-of-type(4)');
     
-    // По умолчанию показываем Европу
-    showContinent('europe');
+    if (btnEurope) btnEurope.addEventListener('click', () => showContinent('europe', 'Europe'));
+    if (btnAsia)   btnAsia.addEventListener('click',   () => showContinent('asia', 'Asia'));
+    if (btnAmerica)btnAmerica.addEventListener('click',() => showContinent('america', 'Americas'));
+    if (btnAfrica) btnAfrica.addEventListener('click', () => showContinent('africa', 'Africa'));
+    
+    //         fallback key - URL substr
+    showContinent('europe', 'Europe');
 }
 
 window.addEventListener('load', initMap);

@@ -22,6 +22,7 @@ html, body {
     --color-2: rgb(255, 108, 108);
     --color-3 : gray;
     --color-4: white;
+    --color-5: rgb(65, 123, 247);
 
     --shadow-color-1: rgb(214, 214, 214);
     --box-shadow-1: 0px 3px 5px var(--shadow-color-1);
@@ -426,7 +427,7 @@ div > h2 {
 }
 
 #contacts button.active-button {
-    background-color: var(--color-2);
+    background-color: var(--color-5);
     color: var(--color-4);
 }
 
