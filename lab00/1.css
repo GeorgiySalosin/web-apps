@@ -229,3 +229,85 @@ ol li:has(input:checked) {
     color: inherit;
     cursor: pointer;
 }
+
+
+.filter-panel {
+    width: 50%;
+    margin: 20px auto;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.filter-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-link {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.filter-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-link.active {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-decoration: underline;
+}
+
+.sort-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sort-btn {
+    background-color: rgba(184, 175, 175, 0.8);
+    border: none;
+    padding: 5px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.sort-btn:hover {
+    background-color: rgb(184, 175, 175);
+    transform: scale(1.05);
+}
+
+.sort-btn.active {
+    background-color: rgb(100, 100, 100);
+    color: white;
+    font-weight: bold;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .filter-panel, ol {
+        width: 90%;
+    }
+    
+    .sort-buttons {
+        gap: 5px;
+    }
+    
+    .sort-btn {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+}

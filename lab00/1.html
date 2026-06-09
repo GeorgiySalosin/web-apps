@@ -3,7 +3,7 @@
     <head>
         <link rel="icon" href="DefaultUser.jpg">
         <link rel="stylesheet" type="text/css" href="1.css">
-        <title>WebsiteTitle</title>
+        <title>ToDo List</title>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -14,73 +14,37 @@
                     <h1>ToDoList</h1>
                 </div>
             </div>
+            
             <div class="MyInput">
-                <input type="text" placeholder="добавить элемент"/>
+                <input type="text" id="taskInput" placeholder="добавить элемент"/>
                 <button id="createButton">Создать</button>
                 <button id="clearButton">Очистить</button>
             </div>
 
-            <!--  NO  PROBELLAS!!!  -->
+            <!-- Список задач -->
+            <ol data-placeholder="Не найдено ни одного дела" id="todoList"></ol>
 
-            <ol data-placeholder="Не найдено ни одного дела"><li>
-                    <label class="MyLabel">
-                        <input type="checkbox">
-                        <span class="AllText">
-                            <span class="TaskText">Почесать cat</span>
-                            <span class="SubTaskText">от 24.08.2024</span>
-                        </span>
-                    </label>
-                    <button class="LiButton">✖</button>
-                </li>
-                <li>
-                    <label class="MyLabel">
-                        <input type="checkbox">
-                        <span class="AllText">
-                            <span class="TaskText">Почвыыкеыкноыкновыновновенвенвеновеновенвat</span>
-                            <span class="SubTaskText">от 24.08.2024</span>
-                        </span>
-                    </label>
-                    <button class="LiButton">✖</button>
-                </li>
-                <li>
-                    <label class="MyLabel">
-                        <input type="checkbox">
-                        <span class="AllText">
-                            <span class="TaskText">Почесать cat</span>
-                            <span class="SubTaskText">от 24.08.2024</span>
-                        </span>
-                    </label>
-                    <button class="LiButton">✖</button>
-                </li>
-                <li>
-                    <label class="MyLabel">
-                        <input type="checkbox">
-                        <span class="AllText"> 
-                            <span class="TaskText">Полить potatoes</span>
-                            <span class="SubTaskText">от 04.11.2021</span>
-                        </span>
-                    </label>
-                    <button class="LiButton">✖</button>
-                </li>
-                <li>
-                    <label class="MyLabel">
-                        <input type="checkbox">
-                        <span class="AllText"> 
-                            <span class="TaskText"> Сложить в basket </span>
-                            <span class="SubTaskText">от 14.15.2035</span>
-                        </span>
-                    </label>
-                    <button class="LiButton">✖</button>
-                </li></ol>
-            
+            <!-- Панель фильтрации и сортировки (ПОД списком) -->
+            <div class="filter-panel">
+                <div class="filter-links">
+                    <a href="#" data-filter="all" class="filter-link active">Все</a>
+                    <a href="#" data-filter="completed" class="filter-link">Сделано (<span id="completedCount">0</span>)</a>
+                    <a href="#" data-filter="active" class="filter-link">Не сделано (<span id="activeCount">0</span>)</a>
+                </div>
+                <div class="sort-buttons">
+                    <button data-sort="date-asc" class="sort-btn">📅 Старые → Новые</button>
+                    <button data-sort="date-desc" class="sort-btn active">📅 Новые → Старые</button>
+                    <button data-sort="name-asc" class="sort-btn">📝 А → Я</button>
+                    <button data-sort="name-desc" class="sort-btn">📝 Я → А</button>
+                </div>
+            </div>
         </main>
 
-        
         <footer class="site-footer">
             <hr>
-            <!-- This creates the horizontal line -->
-            <p>&copy; 2026 WebSite. All Copyrights Claimed.</p>
+            <p>&copy; 2026 WebSite. All Rights Claimed.</p>
         </footer>
 
+        <script src="script.js"></script>
     </body>
 </html>
